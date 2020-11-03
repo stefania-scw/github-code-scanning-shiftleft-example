@@ -1,0 +1,23 @@
+{
+  "name": "github-code-scanning-shiftleft-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SecureCodeWarrior/github-code-scanning-shiftleft-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SecureCodeWarrior/github-code-scanning-shiftleft-example/issues"
+  },
+  "homepage": "https://github.com/SecureCodeWarrior/github-code-scanning-shiftleft-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

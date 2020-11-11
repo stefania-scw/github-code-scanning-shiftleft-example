@@ -38,11 +38,11 @@ jobs:
     - name: Add Secure Code Warrior Training
       uses: SecureCodeWarrior/github-action-add-sarif-contextual-training@v1
       with:
-        inputSarifFile: reports/source-js-report.sarif
-        outputSarifFile: source-js-report.processed.sarif
+        inputSarifFile: reports
+        outputSarifFile: processed-sarifs
         githubToken: ${{ secrets.GITHUB_TOKEN }} 
 
     - name: Upload report
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: source-js-report.processed.sarif
+        sarif_file: processed-sarifs

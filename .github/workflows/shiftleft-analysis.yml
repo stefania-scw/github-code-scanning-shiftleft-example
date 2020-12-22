@@ -4,7 +4,13 @@
 name: SL Scan
 
 # This section configures the trigger for the workflow. Feel free to customize depending on your convention
-on: push
+on:
+  push:
+    branches:
+      - pr_test
+  pull_request:
+    branches:
+      - pr_test
 
 jobs:
   Scan-Build:
@@ -46,3 +52,9 @@ jobs:
       uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: processed-sarifs
+        
+    - name: Create status check
+      run: |
+        URL="https://www.shiftleft.io/violationlist/ShiftLeftJS?apps=ShiftLeftJS&isApp=1"
+        GH_CHECK_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/check-runs"
+        curl -XPOST $GH_CHECK_URL -H "Authorization: Token ${GITHUB_TOKEN}" -H "accept: application/vnd.github.antiope-preview+json" -H "Content-Type: application/json" -d "{\"name\": \"ShiftLeft NG SAST\", \"head_sha\": \"${GITHUB_REF}\", \"external_id\": \"ShiftLeftJS\", \"details_url\": \"${URL}\", \"status\": \"completed\", \"conclusion\": \"action_required\", \"output\": {\"title\": \"ShiftLeft NG SAST Findings\", \"summary\": \"Visit ${URL} for the findings\"}}"
